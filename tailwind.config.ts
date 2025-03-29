@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class", // ✅ 필수!
+  darkMode: "class", 
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
@@ -11,7 +11,9 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        border: "var(--border)",
         muted: "var(--muted)",
+        muted_solid: "var(--muted_solid)",
         muted_foreground: "var(--muted-foreground)",
       },
     },
