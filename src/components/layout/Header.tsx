@@ -1,15 +1,45 @@
-import { ReactNode } from "react";
+import { useSidebar } from "@/contexts/SidebarContext";
+import { PanelLeftOpen, PanelRightOpen } from "lucide-react";
+import { AiOutlineMoon, AiOutlineSun } from "react-icons/ai";
+import { useTheme } from "next-themes";
+import NavLink from "../ui/NavLink";
 
-interface HeaderProps {
-  title: string;
-  children: ReactNode;
-}
+const tabList = [
+  { href: "/", text: "blog" },
+  { href: "/tags", text: "tags" },
+];
 
-export const Header: React.FC<HeaderProps> = ({ title, children }) => {
+export const Header = () => {
+  const { toggleSidebar, isOpen } = useSidebar();
+  const { theme, setTheme } = useTheme();
+
   return (
-    <section className="flex font-light gap-2 text-lg pb-4 mb-6 border-b items-center">
-      <h1 className="font-normal">{title}</h1>
-      {children && <h3 className="text-muted-foreground">: {children}</h3>}
-    </section>
+    <header className="h-20 bg-muted rounded-lg border flex items-center justify-between px-6">
+      <button
+        onClick={toggleSidebar}
+        className="text-sm px-2 py-1 transition mr-4"
+      >
+        {isOpen ? <PanelRightOpen /> : <PanelLeftOpen />}
+      </button>
+      <div className="flex items-center justify-center gap-5">
+        <div className="flex items-center justify-center gap-3">
+          {tabList.map((link) => (
+            <NavLink key={link.href} href={link.href}>
+              {link.text}
+            </NavLink>
+          ))}
+        </div>
+        <button
+          className="cursor-pointer transition-all duration-300"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          {theme === "dark" ? (
+            <AiOutlineMoon size={25} />
+          ) : (
+            <AiOutlineSun size={25} />
+          )}
+        </button>
+      </div>
+    </header>
   );
 };

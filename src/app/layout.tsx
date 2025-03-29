@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-// import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import { SidebarProvider } from "@/contexts/SidebarContext";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 
@@ -22,16 +22,16 @@ export default function RootLayout({
       <body
         className={`${font.className} bg-background text-foreground antialiased`}
       >
-        {/* <ThemeProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
-        > */}
-        <SidebarProvider>
-          <LayoutWrapper>{children}</LayoutWrapper>
-        </SidebarProvider>
-        {/* </ThemeProvider> */}
+        >
+          <SidebarProvider>
+            <LayoutWrapper>{children}</LayoutWrapper>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

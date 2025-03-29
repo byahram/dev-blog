@@ -2,6 +2,7 @@
 
 import { useSidebar } from "@/contexts/SidebarContext";
 import SideNav from "./SideNav";
+import { Header } from "./Header";
 
 export default function LayoutWrapper({
   children,
@@ -12,12 +13,13 @@ export default function LayoutWrapper({
 
   return (
     <div
-      className={`flex flex-col-reverse sm:grid sm:h-screen sm:w-screen sm:overflow-hidden transition-all duration-300 ${
-        isOpen ? "sm:grid-cols-[256px,1fr]" : "sm:grid-cols-[0,1fr]"
+      className={`grid h-screen transition-all duration-300 ${
+        isOpen ? "lg:grid-cols-[256px,1fr]" : "lg:grid-cols-[0,1fr]"
       }`}
     >
       <SideNav />
       <main className="w-full h-full overflow-y-auto p-4 flex flex-col gap-4">
+        <Header />
         {children}
       </main>
     </div>

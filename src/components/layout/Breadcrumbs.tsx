@@ -1,5 +1,3 @@
-"use client";
-
 import { Skeleton } from "@/components/ui/Skeleton";
 import {
   Breadcrumb,
@@ -9,8 +7,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/Breadcrumb";
-import { useSidebar } from "@/contexts/SidebarContext";
-import { PanelLeftOpen, PanelRightOpen } from "lucide-react";
 
 export const Breadcrumbs = ({
   pageName,
@@ -19,16 +15,8 @@ export const Breadcrumbs = ({
   pageName?: string;
   isLoading?: boolean;
 }) => {
-  const { toggleSidebar, isOpen } = useSidebar();
-
   return (
     <Breadcrumb className="h-20 bg-muted rounded-lg border flex items-center justify-start px-6">
-      <button
-        onClick={toggleSidebar}
-        className="text-sm px-2 py-1 bg-muted transition mr-4"
-      >
-        {isOpen ? <PanelRightOpen /> : <PanelLeftOpen />}
-      </button>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
@@ -38,17 +26,10 @@ export const Breadcrumbs = ({
           {isLoading ? (
             <Skeleton className="h-5 w-20" />
           ) : (
-            <BreadcrumbLink>{pageName || "Dashboard"}</BreadcrumbLink>
+            <BreadcrumbLink>{pageName || ""}</BreadcrumbLink>
           )}
         </BreadcrumbPage>
       </BreadcrumbList>
-      {/* <Image
-        className="hover:animate-spin dark:invert"
-        src={Icon}
-        width={24}
-        height={24}
-        alt="Router.so Icon"
-      /> */}
     </Breadcrumb>
   );
 };

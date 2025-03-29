@@ -3,19 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #ffffff80;
   --foreground: #0a0a0a;
-
+  --border: #e5e5e5;
   --muted: #f5f5f580;
+  --muted_solid: #f5f5f5;
   --muted-foreground: #737373;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #fafafa;
+.dark {
+  --background: #0a0a0a80;
+  --foreground: #fafafa;
+  --border: #3d3d3d;
+  --muted: #3d3d3d80;
+  --muted_solid: #3d3d3d;
+  --muted_foreground: #a3a3a3;
+}
 
-    --muted: #262626;
-    --muted_foreground: #a3a3a3;
-  }
+* {
+  @apply border-border;
 }
